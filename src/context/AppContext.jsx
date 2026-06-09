@@ -4,28 +4,25 @@ const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
     const [selectedLanguage, setSelectedLanguage] = useState('English')
-    const [farmers, setFarmers] = useState([
-        {
-            id: 1,
-            name: "Ramesh",
-            village: "Tumkur"
-        },
-        {
-            id: 2,
-            name: "Suresh",
-            village: "Bangalore"
-        }
-    ]);
+    const [farmers, setFarmers] = useState([]);
+    const [labourers, setlabourers] = useState([]);
     const [search, setSearch] = useState("");
-
 
     const addFarmer=(farmer)=>{
         setFarmers([...farmers, farmer])
     }
 
+    const addLabourer=(labourer)=>{
+        setlabourers([...labourers, labourer])
+    }
+
     return (
         <AppContext.Provider
-        value={{selectedLanguage, setSelectedLanguage, farmers, setFarmers, addFarmer, search, setSearch}}>
+        value={{
+            selectedLanguage, setSelectedLanguage, 
+            farmers, setFarmers, addFarmer,
+            labourers,setlabourers, addLabourer,
+            search, setSearch}}>
             {children}
         </AppContext.Provider>
     )

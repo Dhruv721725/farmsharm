@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-function FarmerCard({ name, village }) {
+function LabourerCard({ name, village }) {
   return (
     <div className="border p-4 rounded mb-4">
       <h2 className="font-bold">
@@ -11,4 +11,4 @@ function FarmerCard({ name, village }) {
   );
 }
 
-export default FarmerCard;
+export default LabourerCard

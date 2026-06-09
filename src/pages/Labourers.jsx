@@ -1,10 +1,25 @@
 import React from 'react'
-
+import Layout from '../components/Layout'
+import { useAppContext } from '../context/AppContext'
+import LabourerCard from '../components/LabourerCard'
 function Labourers() {
+  const {labourers} = useAppContext();
   return (
-    <div>
-      <h1>Labourers</h1>
-    </div>
+    <Layout>
+
+      <h1 className="text-3xl font-bold mb-6">
+        Labourers
+      </h1>
+
+      {labourers.map((labourer) => (
+        <LabourerCard
+          key={labourer.id}
+          name={labourer.name}
+          village={labourer.village}
+        />
+      ))}
+
+    </Layout>
   )
 }
 
