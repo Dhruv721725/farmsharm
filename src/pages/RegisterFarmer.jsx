@@ -1,15 +1,24 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
+import { useAppContext } from '../context/AppContext'
 
 function RegisterFarmer() {
+  const { addFarmer } = useAppContext();
   const [name, setName] = useState("")
   const [village, setVillage] = useState("")
   
   const handleSubmit = ()=>{
     console.log({
+      name, 
+      village
+    })
+    addFarmer({
+      id: Date.now(),
       name,
       village
     })
+    setName("")
+    setVillage("")
   }
   return (
     <Layout>

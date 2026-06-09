@@ -20,6 +20,7 @@ function Navbar() {
           <Link to="/">Home</Link>
           <Link to="/farmers">Farmers</Link>
           <Link to="/labourers">Labourers</Link>
+          <Link to="/register-farmer">Register Farmer</Link>
         </div>
 
       </div>

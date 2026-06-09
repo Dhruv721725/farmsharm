@@ -1,19 +1,10 @@
 import React from 'react'
 import Layout from "../components/Layout";
 import FarmerCard from '../components/FarmerCard';
+import { useAppContext } from '../context/AppContext';
+
 function Farmers() {
-  const farmers = [
-    {
-      id: 1,
-      name: "Ramesh",
-      village: "Tumkur"
-    },
-    {
-      id: 2,
-      name: "Suresh",
-      village: "Bangalore"
-    }
-  ];
+  const { farmers } = useAppContext();
   return (
     <Layout>
 
