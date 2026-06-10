@@ -32,7 +32,7 @@ function Navbar() {
   },[])
 
   return (
-    <div className="min-h flex flex-col bg-[#f7faf7]">
+    <div className="min-h flex flex-col bg-[#f7faf7] z-20">
       <header className="bg-green-800 text-white px-4 py-3 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
 
@@ -61,7 +61,7 @@ function Navbar() {
                   setRegisterOpen(!registerOpen)
                   setDirectoryOpen(false)
                 }}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-white/10"
+                className="flex items-center gap-1 pl-2 pr-1 py-2 rounded-lg hover:bg-white/10"
               >
                 Register
                 <ChevronDown size={16} />
@@ -69,12 +69,12 @@ function Navbar() {
 
               {registerOpen && (
                 <div className='absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-lg border z-50 ' >
-                  <Link to="/register-farmer" className="block px-4 py-3 hover:bg-green-50">
+                  <Link to="/register-farmer" className="block px-4 py-3 hover:bg-green-100 rounded-t-xl">
                     <span className="font-bold text-green-700">Kisan</span>
                     <span className="text-xs text-gray-500 ml-1"> / Farmer</span>
                   </Link>
                   
-                  <Link to="/register-labourer" className="block px-4 py-2 hover:bg-gray-200 border-t">
+                  <Link to="/register-labourer" className="block px-4 py-2 hover:bg-amber-100 border-t rounded-b-xl">
                     <span className="font-bold text-amber-600">Mazdoor</span>
                     <span className="text-xs text-gray-500 ml-1"> / Labourer</span>
                   </Link>
@@ -89,18 +89,18 @@ function Navbar() {
                   setDirectoryOpen(!directoryOpen)
                   setRegisterOpen(false)
                 }}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-white/10"
+                className="flex items-center gap-1 pl-2 pr-1 py-2 rounded-lg hover:bg-white/10"
               >
                 Directory
                 <ChevronDown size={16} />
               </button>
               {directoryOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg z-10 border z-50">
-                  <Link to="/farmers" className="block px-4 py-3 hover:bg-gray-200">
+                  <Link to="/farmers" className="block px-4 py-3 hover:bg-green-100 rounded-t-xl">
                     <span className="font-bold text-green-700">Kisan</span>
                     <span className="text-xs text-gray-500 ml-1"> / Farmers</span>
                   </Link>
-                  <Link to="/labourers" className="block px-4 py-2 hover:bg-gray-200">
+                  <Link to="/labourers" className="block px-4 py-2 hover:bg-amber-100 border-t rounded-b-xl">
                     <span className="font-bold text-amber-600">Mazdoor</span>
                     <span className="text-xs text-gray-500 ml-1"> / Labourers</span>
                   </Link>
