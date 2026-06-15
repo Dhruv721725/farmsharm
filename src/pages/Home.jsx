@@ -23,7 +23,7 @@ function Home() {
     </div>
 
     <h1 className="text-4xl font-extrabold">
-      Welcome toFarmSharm
+      Welcome to FarmSharm
     </h1>
 
     <p className="text-green-200 mt-2 text-lg">
@@ -45,7 +45,7 @@ function Home() {
           title="Kisan"
           description="Farmers"
           buttonText="Register your farm"
-          link="/register-farmers"
+          link="/register-farmer"
           theme="farmer"
         />
 
@@ -54,7 +54,7 @@ function Home() {
           title="Mazdoor"
           description="Labourers"
           buttonText="Register for work"
-          link="/register-labourers"
+          link="/register-labourer"
           theme="labourer"
         />
 
