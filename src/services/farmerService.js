@@ -23,3 +23,37 @@ export async function fetchFarmers() {
   }
   return data;
 }
+
+export async function getFarmerById(id) {
+  const { data, error } = await supabase
+    .from("farmers")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+export async function updateFarmer(id,farmerData) {
+  const { data, error } =
+    await supabase
+      .from("farmers")
+      .update(farmerData)
+      .eq("id", id)
+      .select();
+  if (error) {
+    throw error;
+  }
+  return data;
+}
+
+export async function deleteFarmer(id) {
+  const { error } = await supabase
+    .from("farmers")
+    .delete()
+    .eq("id", id);
+  if (error) {
+    throw error;
+  }
+  return true;
+}

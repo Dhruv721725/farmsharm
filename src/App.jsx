@@ -14,6 +14,8 @@ function App() {
       <Route path="/labourers" element={<Labourers />} />
       <Route path="/register-labourer" element={<RegisterLabourer />} />
       <Route path="/register-farmer" element={<RegisterFarmer />} />
+      <Route path="/register-farmer/:id" element={<RegisterFarmer />} />
+      <Route path="/register-labourer/:id" element={<RegisterLabourer />} />
     </Routes>
   )
 }

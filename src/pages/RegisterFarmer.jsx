@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 import { useAppContext } from '../context/AppContext'
 import InputField from '../components/InputField';
 import ChipSelector from '../components/ChipSelector';
 import { CROPS } from '../constants/crops';
 import useLocation from '../hooks/useLocation';
-import { createFarmer } from "../services/farmerService";
+import { createFarmer, getFarmerById, updateFarmer } from "../services/farmerService";
+import { useParams } from "react-router-dom";
 
 function RegisterFarmer() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,35 @@ function RegisterFarmer() {
     latitude: null,
     longitude: null,
   });
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      loadFarmer();
+    }
+  }, [id]);
+
+  async function loadFarmer() {
+    try {
+      const farmer =
+        await getFarmerById(id);
+      setFormData({
+        name: farmer.name || "",
+        phone: farmer.phone || "",
+        village: farmer.village || "",
+        district: farmer.district || "",
+        state: farmer.state || "",
+        land_size: farmer.land_size || "",
+        latitude: farmer.latitude,
+        longitude: farmer.longitude,
+      });
+      setSelectedCrops(
+        farmer.crop_types || []
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const [selectedCrops, setSelectedCrops] = useState([]);
   const handleChange = (e) => {
@@ -84,8 +114,13 @@ function RegisterFarmer() {
         ...formData,
         crop_types: selectedCrops,
       };
-      await createFarmer(payload);
-      setMessage("Farmer registered successfully!");
+      if (id) {
+        await updateFarmer(id, payload);
+        setMessage("Farmer updated successfully!");
+      } else {
+        await createFarmer(payload);
+        setMessage("Farmer registered successfully!");
+      }
       setFormData({
         name: "",
         phone: "",
@@ -108,7 +143,9 @@ function RegisterFarmer() {
     <Layout>
       <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-3xl p-8 my-10">
         <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
-          Register Farmer 🌾
+          {id
+            ? "Edit Farmer 🌾"
+            : "Register Farmer 🌾"}
         </h1>
         <form
           className="space-y-4"
@@ -193,9 +230,11 @@ function RegisterFarmer() {
           type="submit"
           disabled={loading}
         >
-          {loading
-            ? "Registering..."
-            : "Register Farmer"}
+        {loading
+            ? "Saving..."
+            : id
+              ? "Update Farmer"
+              : "Register Farmer"}
         </button>
         </form>
       </div>

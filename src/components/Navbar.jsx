@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import logo from '../assets/images/farmsharm-logo.jpeg'
 
 function Navbar() {
@@ -10,6 +10,7 @@ function Navbar() {
   const [directoryOpen, setDirectoryOpen] = useState(false);
   const registerRef = useRef(null);
   const directoryRef = useRef(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,7 +34,7 @@ function Navbar() {
 
   return (
     <div className="min-h flex flex-col bg-[#f7faf7] z-20">
-      <header className="bg-green-800 text-white px-4 py-3 shadow-md">
+      <header className="relative bg-green-800 text-white px-4 py-3 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
 
           {/* Logo */}
@@ -47,7 +48,13 @@ function Navbar() {
           </Link>
 
           {/* Navigation Links */}
-          <nav className="flex items-center gap-2">
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (<X size={28} />) : (<Menu size={28} />)}
+          </button>
+          <nav className="hidden md:flex items-center gap-2">
             <div>
               <Link to="/" className={`px-3 py-2 rounded-lg hover:bg-white/10 ${location.pathname === "/" ? "bg-white/20" : ""}`}>
                 Home
@@ -108,6 +115,51 @@ function Navbar() {
               )}  
             </div>
           </nav>
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full right-0 w-fit bg-green-700 shadow-lg z-50 ">
+              <div className="flex flex-col p-4 gap-2">
+                <Link
+                  to="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-lg hover:bg-white/10"
+                >
+                  Home
+                </Link>
+
+                <Link
+                  to="/register-farmer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-lg hover:bg-white/10"
+                >
+                  🌾 Kisan / Farmer
+                </Link>
+
+                <Link
+                  to="/register-labourer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-lg hover:bg-white/10"
+                >
+                  👷 Mazdoor / Labourer
+                </Link>
+
+                <Link
+                  to="/farmers"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-lg hover:bg-white/10"
+                >
+                  Farmers Directory
+                </Link>
+
+                <Link
+                  to="/labourers"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-3 py-2 rounded-lg hover:bg-white/10"
+                >
+                  Labourers Directory
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </header>
     </div>
