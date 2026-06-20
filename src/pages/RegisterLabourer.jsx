@@ -143,7 +143,7 @@ function RegisterLabourer() {
   };
   return (
     <Layout>
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-3xl p-8 my-10">
+      <div className="max-w-2xl mx-auto bg-orange-50 shadow-lg rounded-3xl p-8 my-10">
         <h1 className="text-3xl font-bold text-orange-500 mb-6 text-center">
           {id
             ? "Edit Labourer 👷"

@@ -141,7 +141,7 @@ function RegisterFarmer() {
   };
   return (
     <Layout>
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-3xl p-8 my-10">
+      <div className="max-w-2xl mx-auto bg-green-100 shadow-lg rounded-3xl p-8 my-10">
         <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
           {id
             ? "Edit Farmer 🌾"
